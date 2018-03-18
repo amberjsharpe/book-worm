@@ -1,7 +1,6 @@
 $font-family-sans-serif: 'Merriweather Sans';
 $font-family-serif: 'Merriweather';
 $primaryTeal-color: #0C7976;
-$lightPrimaryTeal-color: #E4FDE1;
 $secondaryPink-color: #F45B69;
 $secondaryOrange-color: #E9893D;
 $darkGray-color:#82878C;
@@ -21,6 +20,11 @@ h1 {
     font-family: $font-family-sans-serif;
     font-size: 48px;
     color: $secondaryOrange-color;
+}
+
+p {
+    font-family: $font-family-serif;
+    color: $darkGray-color;
 }
 
 .nav-btn,
@@ -53,10 +57,12 @@ img {
 .btn-outline-success {
     border-color: $primaryTeal-color;
     background-color: whitesmoke;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
 }
 
 .search-btn {
     color: $secondaryOrange-color;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
 }
 
 
