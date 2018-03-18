@@ -25,9 +25,8 @@ body {
     font: $font-body;
 }
 
-.container {
-    display: flex;
-    justify-content: flex-start;
+.page-header {
+    width: 100%;
 }
 
 img {
