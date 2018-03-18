@@ -1,0 +1,46 @@
+$font-head: 'Merriweather Sans';
+$font-body:  'Merriweather';
+$primaryTeal-color: #0C7976;
+$lightPrimaryTeal-color: #25A29A;
+$secondaryBlue-color: #16BAC5;
+$secondaryOrange-color: #E9893D;
+$darkGray-color:#82878C;
+$gray-color: #A0A5AA;
+$lightGray-color: #B4B9BE;
+$black-color: #222;
+
+html,
+body,
+ul,
+ol {
+  margin:  0;
+  padding: 0;
+}
+
+h1{
+    font-size: 36px;
+}
+
+body {
+    font: $font-body;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+img {
+    width: 125px;
+    height: 155px;
+}
+
+.bookworm {
+    font: $font-head;
+}
+
+.btn-secondary {
+    color: $secondaryOrange-color;
+}
+
+
