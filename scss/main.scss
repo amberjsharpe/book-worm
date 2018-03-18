@@ -1,7 +1,7 @@
 $font-family-sans-serif: 'Merriweather Sans';
 $font-family-serif: 'Merriweather';
 $primaryTeal-color: #0C7976;
-$secondaryPink-color: #EBBAB9;
+$secondaryPink-color: #EF476F;
 $secondaryOrange-color: #E9893D;
 $darkGray-color:#82878C;
 $gray-color: #A0A5AA;
@@ -35,6 +35,10 @@ p {
 
 .header-nav {
     background-color: $secondaryPink-color;
+    background: linear-gradient(to bottom right, $secondaryPink-color, $secondaryOrange-color);
+    border: 1px $lightGray-color solid;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+    height: 150px;
 }
 
 body {
