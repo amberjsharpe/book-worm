@@ -1,8 +1,8 @@
 $font-family-sans-serif: 'Merriweather Sans';
 $font-family-serif: 'Merriweather';
 $primaryTeal-color: #0C7976;
-$lightPrimaryTeal-color: #25A29A;
-$secondaryBlue-color: #F45B69;
+$lightPrimaryTeal-color: #E4FDE1;
+$secondaryPink-color: #F45B69;
 $secondaryOrange-color: #E9893D;
 $darkGray-color:#82878C;
 $gray-color: #A0A5AA;
@@ -30,8 +30,7 @@ h1 {
 }
 
 .header-nav {
-    background-color: $secondaryBlue-color;
-    
+    background-color: $secondaryPink-color;
 }
 
 body {
