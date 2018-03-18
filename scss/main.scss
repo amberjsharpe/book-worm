@@ -1,8 +1,7 @@
-$font-head: 'Merriweather Sans';
-$font-body:  'Merriweather';
+$font-family-sans-serif: 'Merriweather Sans';
+$font-family-serif: 'Merriweather';
 $primaryTeal-color: #0C7976;
-$lightPrimaryTeal-color: #25A29A;
-$secondaryBlue-color: #16BAC5;
+$secondaryPink-color: #EF476F;
 $secondaryOrange-color: #E9893D;
 $darkGray-color:#82878C;
 $gray-color: #A0A5AA;
@@ -17,30 +16,60 @@ ol {
   padding: 0;
 }
 
-h1{
-    font-size: 36px;
+h1 {
+    font-family: $font-family-sans-serif;
+    font-size: 48px;
+    color: $secondaryOrange-color;
+}
+
+p {
+    font-family: $font-family-serif;
+    color: $darkGray-color;
+}
+
+.nav-btn,
+.navbar-text {
+    font-family: $font-family-sans-serif;
+    color: $secondaryOrange-color;
+}
+
+.header-nav {
+    background-color: $secondaryPink-color;
+    background: linear-gradient(to bottom right, $secondaryPink-color, $secondaryOrange-color);
+    border: 1px $lightGray-color solid;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+    height: 150px;
 }
 
 body {
-    font: $font-body;
-}
-
-.container {
-    display: flex;
-    justify-content: flex-start;
+    font: $font-family-serif;
 }
 
 img {
-    width: 125px;
-    height: 155px;
+    width: 165px;
+    height: 195px;
 }
 
 .bookworm {
-    font: $font-head;
+    font: $font-family-sans-serif;
 }
 
-.btn-secondary {
-    color: $secondaryOrange-color;
+#search-input {
+    width: 400px;
 }
+
+.btn-outline-success {
+    border-color: $primaryTeal-color;
+    background-color: whitesmoke;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+}
+
+.search-btn {
+    color: $secondaryOrange-color;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+}
+
+
+
 
 
