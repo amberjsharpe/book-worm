@@ -22,10 +22,9 @@
     "grunt-contrib-watch": "^1.0.0",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
-    "matchdep": "^2.0.0"
-  },
-  "dependencies": {
+    "matchdep": "^2.0.0",
     "bootstrap": "^4.0.0",
-    "firebase": "^4.11.0"
+    "firebase": "^4.11.0",
+    "jquery": "^3.3.1"
   }
 }
