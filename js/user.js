@@ -1,6 +1,5 @@
 "use strict";
 
-let mainJS  = require("./main");
 let firebase = require("./fb-config");
 let currentUser = null;
 

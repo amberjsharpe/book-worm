@@ -1,13 +1,10 @@
 "use strict";
 
-
-let firebase = require("firebase/app"),
-    auth = require("firebase/auth"),
-    database = require("firebase/database"),
+let firebase = require("../lib/node_modules/firebase/app"),
+    auth = require("../lib/node_modules/firebase/auth"),
+    database = require("../lib/node_modules/firebase/database"),
     fb = require("./fb-key"),
     fbData = fb();
-
-
 
 var config = {
   apiKey: fbData.apiKey,
@@ -18,7 +15,7 @@ var config = {
 firebase.initializeApp(config);
 
 firebase.getFBsettings = () => {
-	// console.log("getFBsettings", config);
+	console.log("getFBsettings", config);
 	return config;
 };
 
