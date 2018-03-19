@@ -7,7 +7,6 @@ function getBooks(searchBooks) {
         url: `https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q=${searchBooks}`,
     })
 } 
-// Returns promise - .then() where I call it
 
 // Get value from Search Input
 let searchInputValue = () => {
@@ -17,5 +16,17 @@ let searchInputValue = () => {
     console.log($('#search').val('')); 
 };
 
+// Returns promise - .then() where I call it
+let booksArray = [];
+function printBooks(value){
+    getBooks(value)
+   .then((books) => {
+    console.log(books);
+    let booksData = XML.parse(books);
+    console.log(booksArray);
+    booksArray.push(booksData);
+    // print function
+   });
+}
 
-module.exports = {getBooks, searchInputValue, buildBooks};
+module.exports = {getBooks, searchInputValue, printBooks};
