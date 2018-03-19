@@ -1,36 +1,37 @@
 "use strict";
 
-let mainJS  = require("./main");
 let firebase = require("./fb-config");
-let currentUser = null;
+let provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+let currentUser;
 
 //installed firebase into lib folder npm install firebase --save
-
 // loginGoogle
-logInGoogle()
-.then((result) => {
+logInGoogle(provider).then((result) => {
+	console.log(result);
 	console.log("result from login", result.user.uid);
-  // user = result.user.uid;
-setUser(result.user.uid);
-
+	let user = result.user.uid;	  
+	setUser(user);
 });
 
 //listen for changed state
 firebase.auth().onAuthStateChanged((user) => {
-	// console.log("onAuthStateChanged", user);
+	let currentUser;
+	console.log("onAuthStateChanged", user);
 
 	if (user){
 		currentUser = user.uid;
-		// console.log("current user Logged in?", currentUser);
+		console.log("current user Logged in?", currentUser);
 	} else {
 		currentUser = null;
-		// console.log("current user NOT logged in:", currentUser);
+		console.log("current user NOT logged in:", currentUser);
 	}
 });
 
 function logInGoogle(provider) {
 	//all firebase functions return a promise!! Add a then when called
-    // console.log('tried to login');
+	// console.log('tried to login');
+	console.log(provider);
     return firebase.auth().signInWithPopup(provider);
 }
 
