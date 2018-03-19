@@ -4,7 +4,7 @@ let $ = require("../lib/node_modules/jquery");
 // Pull API
 function getBooks(searchBooks) {
     return $.ajax({
-        url: `https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q=${searchBooks}`,
+        url: `https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q='${searchBooks}'`,
     })
 } 
 
@@ -17,16 +17,16 @@ let searchInputValue = () => {
 };
 
 // Returns promise - .then() where I call it
-let booksArray = [];
-function printBooks(value){
-    getBooks(value)
-   .then((books) => {
-    console.log(books);
-    let booksData = XML.parse(books);
-    console.log(booksArray);
-    booksArray.push(booksData);
-    // print function
-   });
-}
+// let booksArray = [];
+// function printBooks(value){
+//     getBooks(value)
+//    .then((books) => {
+//     console.log(books);
+//     let booksData = XML.parse(books);
+//     console.log(booksArray);
+//     booksArray.push(booksData);
+//     // print function
+//    });
+// }
 
-module.exports = {getBooks, searchInputValue, printBooks};
+module.exports = {getBooks, searchInputValue};
