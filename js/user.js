@@ -7,12 +7,12 @@ let currentUser;
 
 //installed firebase into lib folder npm install firebase --save
 // loginGoogle
-logInGoogle(provider).then((result) => {
-	console.log(result);
-	console.log("result from login", result.user.uid);
-	let user = result.user.uid;	  
-	setUser(user);
-});
+// logInGoogle(provider).then((result) => {
+// 	console.log(result);
+// 	console.log("result from login", result.user.uid);
+// 	let user = result.user.uid;	  
+// 	setUser(user);
+// });
 
 //listen for changed state
 firebase.auth().onAuthStateChanged((user) => {
