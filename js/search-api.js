@@ -11,9 +11,10 @@ function getBooks(searchBooks) {
 } 
 
 // Get value from Search Input
-let searchParseAndPrint = () => {
+let searchInputValue = () => {
     $('#display').empty();
     let value = $("#search").val();
+    booksArray = [];
     parseAndPrintBooks(value);
     $('#search').val('');
 };
@@ -60,11 +61,11 @@ let booksArray = [];
 
 function parseAndPrintBooks(value){
     getBooks(value).then((books) => {
-        // console.log("books", books);
+        console.log("books", books);
         let jsonText = xmlToJson(books);
-        // console.log("jsontext", jsonText);
+        console.log("jsontext", jsonText);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
-        // console.log("booksData", booksData);
+        console.log("booksData", booksData);
         booksData.forEach(function(item) {
             var book = item.best_book;
             let bookObject = {
@@ -76,8 +77,7 @@ function parseAndPrintBooks(value){
             // console.log("book author", book.author.name["#text"]);
             // console.log("book title", book.title["#text"]);
             // console.log("book image", book.image_url["#text"]);
-        });      
-        console.log("booksArray", booksArray);
+        });         
         printSearchResultsToDOM(booksArray);
     });
 }
@@ -98,4 +98,4 @@ let printSearchResultsToDOM = () => {
     }
 };
 
-module.exports = {getBooks, searchParseAndPrint, xmlToJson, parseAndPrintBooks, printSearchResultsToDOM, booksArray};
+module.exports = {getBooks, searchInputValue, xmlToJson, parseAndPrintBooks, printSearchResultsToDOM, booksArray};
