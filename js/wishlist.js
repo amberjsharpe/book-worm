@@ -17,5 +17,14 @@ function addToWishlist(wishlistObject) {
     });
 }
 
+function getWishList() {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/wishlist.json`,
+        type: 'GET',
+        dataType: 'json'
+    }).done((fbID) => {
+        return fbID;
+    });
+}
 
-module.exports = {addToWishlist};
+module.exports = {addToWishlist, getWishList};
