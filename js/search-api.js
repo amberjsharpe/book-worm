@@ -17,7 +17,6 @@ function getBooks(searchBooks) {
 let searchInputValue = () => {
     $('#display').empty();
     let value = $("#search").val();
-    booksArray = [];
     parseAndPrintBooks(value);
     $('#search').val('');
 };
@@ -60,9 +59,11 @@ function xmlToJson(xml) {
 }
 
 // Parses and pushes to booksArray
-let booksArray = [];
+// let booksArray = [];
 
 function parseAndPrintBooks(value){
+    console.log(value);
+    let booksArray = [];
     getBooks(value).then((books) => {
         console.log("books", books);
         let jsonText = xmlToJson(books);
@@ -83,7 +84,7 @@ function parseAndPrintBooks(value){
     });
 }
 
-let printSearchResultsToDOM = () => {
+let printSearchResultsToDOM = (booksArray) => {
     $('#display').append(`<div><h2>Search Results</h2></div>`);
     
     for (var i = 0; i < booksArray.length; i++) {
@@ -100,12 +101,18 @@ let printSearchResultsToDOM = () => {
     }
 };
 
-let checkWishListButton = (event) => {
+let checkWishListButton = (event, booksArray) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
     wishlist.addToWishlist(matchedBook).then(wishlistData => {
         console.log(wishlistData);
     });   
-}
+};
+
+let getWishList = () => {
+    wishlist.getWishList().then(wishlistData => {
+        console.log(wishlistData);
+    });
+};
 
 
 module.exports = {
@@ -114,6 +121,6 @@ module.exports = {
     xmlToJson, 
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
-    booksArray,
-    checkWishListButton
+    checkWishListButton,
+    getWishList
 };
