@@ -91,7 +91,8 @@ let printSearchResultsToDOM = () => {
             <h3 class="title">${booksArray[i].title}</h3>
             <h4 class="author">Author: ${booksArray[i].author}</h4>
             <img class="book-img" src="${booksArray[i].image_url}">
-            <button type="button" class="btn btn-secondary btn-outline-success>Add to Wishlist</button>
+            <button class="btn search-btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+            <button class="btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         `;
         // console.log("booksArray[i]", booksArray[i]);
