@@ -13,7 +13,7 @@ function getBooks(searchBooks) {
 // Get value from Search Input
 let searchInputValue = () => {
     let value = $("#search").val();
-    printBooks(value);
+    parseBooks(value);
     // $('#display').empty();
     // console.log($('#search').val('')); 
 };
@@ -60,26 +60,29 @@ let booksArray = [];
 let booksInfoArray = [];
 function parseBooks(value){
     getBooks(value).then((books) => {
-        console.log(books);
+        console.log("books", books);
         let jsonText = xmlToJson(books);
-        let booksData = jsonText.GoodreadsResponse.search.results.book;
+        let booksData = jsonText.GoodreadsResponse.search.results.work;
         booksArray.push(booksData);
-        console.log(booksArray);
+        console.log("booksArray", booksArray);
         // print function
         printSearchResultsToDOM();
     });
 }
 
 let printSearchResultsToDOM = () => {
+    $('#display').append(`<div><h2>Search Results</h2></div>`).innerHTML;
+
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv = 
             `<div class="bookDisplay">
             <h2 class="listing__title">:${booksArray[i]}</h2> 
             </div>
         `;
-    document.querySelector("display").innerHTML += bookDiv;
+        console.log("booksArray[i]", booksArray[i]);
+        document.querySelector("#display").innerHTML += bookDiv;
     }
-}
+};
 
 // https://stackoverflow.com/questions/4499652/accessing-a-json-variable-pre-fixed-with-a-hash
 
