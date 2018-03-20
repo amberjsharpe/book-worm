@@ -12,10 +12,11 @@ function getBooks(searchBooks) {
 
 // Get value from Search Input
 let searchInputValue = () => {
+    $('#display').empty();
     let value = $("#search").val();
-    printBooks(value);
-    // $('#display').empty();
-    // console.log($('#search').val('')); 
+    booksArray = [];
+    parseAndPrintBooks(value);
+    $('#search').val('');
 };
 
 function xmlToJson(xml) {
@@ -55,32 +56,46 @@ function xmlToJson(xml) {
 	return obj;
 }
 
-// Returns promise - .then() where I call it
+// Parses and pushes to booksArray
 let booksArray = [];
-let booksInfoArray = [];
-function parseBooks(value){
+
+function parseAndPrintBooks(value){
     getBooks(value).then((books) => {
-        console.log(books);
+        console.log("books", books);
         let jsonText = xmlToJson(books);
-        let booksData = jsonText.GoodreadsResponse.search.results.book;
-        booksArray.push(booksData);
-        console.log(booksArray);
-        // print function
-        printSearchResultsToDOM();
+        console.log("jsontext", jsonText);
+        let booksData = jsonText.GoodreadsResponse.search.results.work;
+        console.log("booksData", booksData);
+        booksData.forEach(function(item) {
+            var book = item.best_book;
+            let bookObject = {
+                title: book.title["#text"],
+                author: book.author.name["#text"],
+                image_url: book.image_url["#text"]
+            };
+            booksArray.push(bookObject);
+            // console.log("book author", book.author.name["#text"]);
+            // console.log("book title", book.title["#text"]);
+            // console.log("book image", book.image_url["#text"]);
+        });         
+        printSearchResultsToDOM(booksArray);
     });
 }
 
 let printSearchResultsToDOM = () => {
+    $('#display').append(`<div><h2>Search Results</h2></div>`);
+    
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv = 
             `<div class="bookDisplay">
-            <h2 class="listing__title">:${booksArray[i]}</h2> 
+            <h3 class="title">${booksArray[i].title}</h3>
+            <h4 class="author">Author: ${booksArray[i].author}</h4>
+            <img class="book-img" src="${booksArray[i].image_url}">
             </div>
         `;
-    document.querySelector("display").innerHTML += bookDiv;
+        // console.log("booksArray[i]", booksArray[i]);
+        document.querySelector("#display").innerHTML += bookDiv;
     }
-}
+};
 
-// https://stackoverflow.com/questions/4499652/accessing-a-json-variable-pre-fixed-with-a-hash
-
-module.exports = {getBooks, searchInputValue, xmlToJson, parseBooks};
+module.exports = {getBooks, searchInputValue, xmlToJson, parseAndPrintBooks, printSearchResultsToDOM, booksArray};
