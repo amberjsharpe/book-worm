@@ -9,6 +9,7 @@ $(".search-btn").on("click", function(event) {
     search.searchInputValue();
 });
 
-$(".wishlist-btn").on("click", function(event) {
-    search.checkWishlistButtonID();
+$().on("click", function(event){
+    console.log(event.target.id);
 });
+

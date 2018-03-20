@@ -60,7 +60,7 @@ function xmlToJson(xml) {
 
 // Parses and pushes to booksArray
 let booksArray = [];
-let booksID = [];
+
 function parseAndPrintBooks(value){
     getBooks(value).then((books) => {
         console.log("books", books);
@@ -77,8 +77,6 @@ function parseAndPrintBooks(value){
                 id: book.id["#text"]
             };
             booksArray.push(bookObject);
-            booksID.push(book.id);
-            console.log(booksID);
         });         
         printSearchResultsToDOM(booksArray);
     });
@@ -93,24 +91,13 @@ let printSearchResultsToDOM = () => {
             <h3 class="title">${booksArray[i].title}</h3>
             <h4 class="author">Author: ${booksArray[i].author}</h4>
             <img class="book-img" src="${booksArray[i].image_url}">
-            <button id="${booksArray[i].id}" class="wishlist-btn btn search-btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+            <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         `;
-        // console.log("booksArray[i]", booksArray[i]);
         document.querySelector("#display").innerHTML += bookDiv;
     }
 };
-
-let checkWishlistButtonID = (event) => {
-    if (event.target.id === `${booksArray.id}`) {
-        console.log("it matches");
-    }
-};
-
-document.addEventListener("click", function(){
-    checkWishlistButtonID();
-})
 
 module.exports = {
     getBooks, 
@@ -118,6 +105,5 @@ module.exports = {
     xmlToJson, 
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
-    booksArray,
-    checkWishlistButtonID
+    booksArray
 };
