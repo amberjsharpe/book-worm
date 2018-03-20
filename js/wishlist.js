@@ -1,12 +1,8 @@
 "use strict";
 
 let $ = require("../lib/node_modules/jquery"),
-    firebase = require("./fb-config"),
-    key = require("./fb-key"),
-    user = require("./user"),
-    search = require("./search-api");
-    require("./event-listeners");
-    
+    firebase = require("./fb-config");
+
 
 // Add to Firebase    
 function addToWishlist(wishlistObject) {
@@ -21,5 +17,14 @@ function addToWishlist(wishlistObject) {
     });
 }
 
+function getWishList() {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/wishlist.json`,
+        type: 'GET',
+        dataType: 'json'
+    }).done((fbID) => {
+        return fbID;
+    });
+}
 
-module.exports = {addToWishlist};
+module.exports = {addToWishlist, getWishList};

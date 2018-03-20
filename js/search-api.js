@@ -1,6 +1,7 @@
 "use strict";
 let $ = require("../lib/node_modules/jquery");
 let user = require("./user");
+let wishlist = require("./wishlist");
 let getUser = user.getUser;
 
 // Pull API
@@ -16,7 +17,6 @@ function getBooks(searchBooks) {
 let searchInputValue = () => {
     $('#display').empty();
     let value = $("#search").val();
-    booksArray = [];
     parseAndPrintBooks(value);
     $('#search').val('');
 };
@@ -59,9 +59,11 @@ function xmlToJson(xml) {
 }
 
 // Parses and pushes to booksArray
-let booksArray = [];
-let booksID = [];
+// let booksArray = [];
+
 function parseAndPrintBooks(value){
+    console.log(value);
+    let booksArray = [];
     getBooks(value).then((books) => {
         console.log("books", books);
         let jsonText = xmlToJson(books);
@@ -77,14 +79,12 @@ function parseAndPrintBooks(value){
                 id: book.id["#text"]
             };
             booksArray.push(bookObject);
-            booksID.push(book.id);
-            console.log(booksID);
         });         
         printSearchResultsToDOM(booksArray);
     });
 }
 
-let printSearchResultsToDOM = () => {
+let printSearchResultsToDOM = (booksArray) => {
     $('#display').append(`<div><h2>Search Results</h2></div>`);
     
     for (var i = 0; i < booksArray.length; i++) {
@@ -93,24 +93,34 @@ let printSearchResultsToDOM = () => {
             <h3 class="title">${booksArray[i].title}</h3>
             <h4 class="author">Author: ${booksArray[i].author}</h4>
             <img class="book-img" src="${booksArray[i].image_url}">
-            <button id="${booksArray[i].id}" class="wishlist-btn btn search-btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+            <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         `;
-        // console.log("booksArray[i]", booksArray[i]);
         document.querySelector("#display").innerHTML += bookDiv;
     }
 };
 
-let checkWishlistButtonID = (event) => {
-    if (event.target.id === `${booksArray.id}`) {
-        console.log("it matches");
-    }
+
+
+// Wishlist //
+
+let checkWishListButton = (event, booksArray) => {
+    let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
+    wishlist.addToWishlist(matchedBook).then(wishlistData => {
+        console.log(wishlistData);
+    });   
 };
 
-document.addEventListener("click", function(){
-    checkWishlistButtonID();
-})
+let wishlistArray = [];
+
+let getWishList = () => {
+    wishlist.getWishList().then(wishlistData => {
+      
+    });
+};
+
+
 
 module.exports = {
     getBooks, 
@@ -118,6 +128,6 @@ module.exports = {
     xmlToJson, 
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
-    booksArray,
-    checkWishlistButtonID
+    checkWishListButton,
+    getWishList
 };
