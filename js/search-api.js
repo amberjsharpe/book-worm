@@ -101,6 +101,10 @@ let printSearchResultsToDOM = (booksArray) => {
     }
 };
 
+
+
+// Wishlist //
+
 let checkWishListButton = (event, booksArray) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
     wishlist.addToWishlist(matchedBook).then(wishlistData => {
@@ -108,11 +112,14 @@ let checkWishListButton = (event, booksArray) => {
     });   
 };
 
+let wishlistArray = [];
+
 let getWishList = () => {
     wishlist.getWishList().then(wishlistData => {
-        console.log(wishlistData);
+      
     });
 };
+
 
 
 module.exports = {
