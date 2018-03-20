@@ -1,12 +1,8 @@
 "use strict";
 
 let $ = require("../lib/node_modules/jquery"),
-    firebase = require("./fb-config"),
-    key = require("./fb-key"),
-    user = require("./user"),
-    search = require("./search-api");
-    require("./event-listeners");
-    
+    firebase = require("./fb-config");
+
 
 // Add to Firebase    
 function addToWishlist(wishlistObject) {

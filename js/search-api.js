@@ -1,6 +1,7 @@
 "use strict";
 let $ = require("../lib/node_modules/jquery");
 let user = require("./user");
+let wishlist = require("./wishlist");
 let getUser = user.getUser;
 
 // Pull API
@@ -99,11 +100,20 @@ let printSearchResultsToDOM = () => {
     }
 };
 
+let checkWishListButton = (event) => {
+    let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
+    wishlist.addToWishlist(matchedBook).then(wishlistData => {
+        console.log(wishlistData);
+    });   
+}
+
+
 module.exports = {
     getBooks, 
     searchInputValue, 
     xmlToJson, 
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
-    booksArray
+    booksArray,
+    checkWishListButton
 };
