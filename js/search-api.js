@@ -1,5 +1,7 @@
 "use strict";
 let $ = require("../lib/node_modules/jquery");
+let user = require("./user");
+let getUser = user.getUser;
 
 // Pull API
 function getBooks(searchBooks) {
@@ -58,7 +60,7 @@ function xmlToJson(xml) {
 
 // Parses and pushes to booksArray
 let booksArray = [];
-
+let booksID = [];
 function parseAndPrintBooks(value){
     getBooks(value).then((books) => {
         console.log("books", books);
@@ -71,12 +73,12 @@ function parseAndPrintBooks(value){
             let bookObject = {
                 title: book.title["#text"],
                 author: book.author.name["#text"],
-                image_url: book.image_url["#text"]
+                image_url: book.image_url["#text"],
+                id: book.id["#text"]
             };
             booksArray.push(bookObject);
-            // console.log("book author", book.author.name["#text"]);
-            // console.log("book title", book.title["#text"]);
-            // console.log("book image", book.image_url["#text"]);
+            booksID.push(book.id);
+            console.log(booksID);
         });         
         printSearchResultsToDOM(booksArray);
     });
@@ -91,7 +93,7 @@ let printSearchResultsToDOM = () => {
             <h3 class="title">${booksArray[i].title}</h3>
             <h4 class="author">Author: ${booksArray[i].author}</h4>
             <img class="book-img" src="${booksArray[i].image_url}">
-            <button class="wishlist-btn btn search-btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+            <button id="${booksArray[i].id}" class="wishlist-btn btn search-btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         `;
@@ -100,4 +102,22 @@ let printSearchResultsToDOM = () => {
     }
 };
 
-module.exports = {getBooks, searchInputValue, xmlToJson, parseAndPrintBooks, printSearchResultsToDOM, booksArray};
+let checkWishlistButtonID = (event) => {
+    if (event.target.id === `${booksArray.id}`) {
+        console.log("it matches");
+    }
+};
+
+document.addEventListener("click", function(){
+    checkWishlistButtonID();
+})
+
+module.exports = {
+    getBooks, 
+    searchInputValue, 
+    xmlToJson, 
+    parseAndPrintBooks, 
+    printSearchResultsToDOM, 
+    booksArray,
+    checkWishlistButtonID
+};

@@ -10,6 +10,5 @@ $(".search-btn").on("click", function(event) {
 });
 
 $(".wishlist-btn").on("click", function(event) {
-    console.log("clicked wishlist button");
-    // wishlist.addBooksWishlist();
+    search.checkWishlistButtonID();
 });
