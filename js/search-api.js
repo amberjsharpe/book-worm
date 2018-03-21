@@ -92,6 +92,7 @@ let printWishlistToDOM = (wishData) => {
     let wishlistArray = [];
     for (let item in wishData) {
         wishlistArray.push(wishData[item]);
+        booksArray.push(wishData[item]);
     }
     for (var i = 0; i < wishlistArray.length; i++) {
         var bookDiv =
@@ -117,6 +118,7 @@ let getWishListData = () => {
         printWishlistToDOM(wishlistData);
     });
 };
+
 // Mark as Read
 let printReadBooksToDOM = (readData) => {
     $('#display').empty();
