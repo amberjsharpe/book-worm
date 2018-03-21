@@ -2,6 +2,9 @@
 let $ = require('../lib/node_modules/jquery');
 let wishlist = require('./wishlist');
 let readBooks = require('./mark-read');
+let user = require('./user');
+let firebase = require("./fb-config");
+
 // Pull API
 function getBooks(searchBooks) {
     return $.ajax({
@@ -63,9 +66,10 @@ function parseAndPrintBooks(value){
                 title: book.title['#text'],
                 author: book.author.name['#text'],
                 image_url: book.image_url['#text'],
-                id: book.id['#text']
+                id: book.id['#text'],
             };
             booksArray.push(bookObject);
+            console.log(bookObject);
         });
         printSearchResultsToDOM(booksArray);
     });
@@ -92,7 +96,6 @@ let printWishlistToDOM = (wishData) => {
     let wishlistArray = [];
     for (let item in wishData) {
         wishlistArray.push(wishData[item]);
-        booksArray.push(wishData[item]);
     }
     for (var i = 0; i < wishlistArray.length; i++) {
         var bookDiv =
@@ -119,6 +122,12 @@ let getWishListData = () => {
     });
 };
 
+let deleteFromWishlist = () => {
+    wishlist.deleteBooksWishlist().then(wishlistData => {
+        
+    });
+};
+
 // Mark as Read
 let printReadBooksToDOM = (readData) => {
     $('#display').empty();
@@ -126,6 +135,7 @@ let printReadBooksToDOM = (readData) => {
     let booksReadArray = [];
     for (let item in readData) {
         booksReadArray.push(readData[item]);
+
     }
     for (var i = 0; i < booksReadArray.length; i++) {
         var bookDiv =
@@ -148,7 +158,9 @@ let checkBooksReadButton = (event) => {
 };
 let getReadBooksData = () => {
     readBooks.getReadBooks().then(readData => {
+        console.log(readBooks);
         printReadBooksToDOM(readData);
+        console.log(readBooks);
     });
 };
 module.exports = {
@@ -160,5 +172,6 @@ module.exports = {
     checkWishListButton,
     getWishListData,
     checkBooksReadButton,
-    getReadBooksData
+    getReadBooksData,
+    deleteFromWishlist
 };

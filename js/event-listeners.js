@@ -19,6 +19,12 @@ $(document).on('click', 'button.markread-btn', function(event){
     search.checkBooksReadButton(event);
 });
 
+// Delete from Wishlist
+$(document).on('click', 'button.delete-btn', function(event) {
+    search.deleteFromWishlist(event);
+    console.log("clicked");
+});
+
 // ** Nav buttons ** //
 
 // Home button
@@ -32,4 +38,7 @@ $(document).on('click', '#wishlist-btn', function(event) {
 });
 
 // Mark as Read nav button
+$(document).on('click', '#readbooks-btn', function() {
+    search.getReadBooksData();
+});
 
