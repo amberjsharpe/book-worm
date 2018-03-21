@@ -78,7 +78,7 @@ function parseAndPrintBooks(value){
             booksArray.push(bookObject);
         });         
         printSearchResultsToDOM(booksArray);
-        console.log(booksArray)
+        console.log(booksArray);
     });
 }
 
@@ -92,7 +92,7 @@ let printSearchResultsToDOM = (booksArray) => {
             <h4 class="author">Author: ${booksArray[i].author}</h4>
             <img class="book-img" src="${booksArray[i].image_url}">
             <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
-            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         `;
         document.querySelector("#display").innerHTML += bookDiv;
@@ -116,7 +116,7 @@ let printWishlistToDOM = (wishData) => {
             <h3 class="title">${wishlistArray[i].title}</h3>
             <h4 class="author">Author: ${wishlistArray[i].author}</h4>
             <img class="book-img" src="${wishlistArray[i].image_url}">
-            <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            <button id="${wishlistArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
@@ -156,7 +156,7 @@ let printReadBooksToDOM = (readData) => {
             <h3 class="title">${booksReadArray[i].title}</h3>
             <h4 class="author">Author: ${booksReadArray[i].author}</h4>
             <img class="book-img" src="${booksReadArray[i].image_url}">
-            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            <button id="${booksReadArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
@@ -166,7 +166,8 @@ let printReadBooksToDOM = (readData) => {
 };
 
 let checkBooksReadButton = (event) => {
-    let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
+    console.log(event);
+    let matchedBook = booksArray.filter(i => `${i.id}-read` === `${event.target.id}`)[0];
     readBooks.addToMarkRead(matchedBook).then(readData => {
         console.log(matchedBook);
         console.log(readData);

@@ -24,13 +24,15 @@ $(document).on("click", "button.markread-btn", function(event){
 
 // ** Nav buttons ** //
 
-// Home button
+// Home nav button
 $(document).on("click", "#home-btn", function(event) {
     $('#display').empty();
 });
 
-// Wishlist button
+// Wishlist nav button
 $(document).on("click", "#wishlist-btn", function(event) {
     search.getWishListData();
 });
+
+// Mark as Read nav button
 
