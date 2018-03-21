@@ -137,41 +137,44 @@ let getWishListData = () => {
 
 // Mark as Read
 
-let printReadBooksToDOM = (readData) => {
-    $('#display').empty();
-    $('#display').append(`<div><h2>Books I've Read</h2></div>`);
+// let printReadBooksToDOM = (readData) => {
+//     $('#display').empty();
+//     $('#display').append(`<div><h2>Books I've Read</h2></div>`);
 
-    let booksReadArray = [];
-    for (let item in readData) {
-        booksReadArray.push(readData[item]);
-    }
+//     let booksReadArray = [];
+//     for (let item in readData) {
+//         booksReadArray.push(readData[item]);
+//         console.log("readData", readData[item]);
+//         console.log("booksReadArray", booksReadArray);
+//     }
 
-    for (var i = 0; i < booksReadArray.length; i++) {
-        var bookDiv = 
-            `<div class="bookDisplay">
-            <h3 class="title">${booksReadArray[i].title}</h3>
-            <h4 class="author">Author: ${booksReadArray[i].author}</h4>
-            <img class="book-img" src="${booksReadArray[i].image_url}">
-            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-            <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
-            </div>
-        `;
-        document.querySelector("#display").innerHTML += bookDiv;
-    }
-};
+//     for (var i = 0; i < booksReadArray.length; i++) {
+//         var bookDiv = 
+//             `<div class="bookDisplay">
+//             <h3 class="title">${booksReadArray[i].title}</h3>
+//             <h4 class="author">Author: ${booksReadArray[i].author}</h4>
+//             <img class="book-img" src="${booksReadArray[i].image_url}">
+//             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+//             <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+//             </div>
+//         `;
+//         document.querySelector("#display").innerHTML += bookDiv;
+//         console.log(booksReadArray);
+//     }
+// };
 
-let checkBooksReadButton = (event) => {
-    let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
-    readBooks.addToMarkRead(matchedBook).then(readData => {
-        console.log(readData);
-    });   
-};
+// let checkBooksReadButton = (event) => {
+//     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
+//     readBooks.addToMarkRead(matchedBook).then(readData => {
+//         console.log(readData);
+//     });   
+// };
 
-let getReadBooksData = () => {
-    readBooks.getReadBooks().then(readData => {
-        printReadBooksToDOM(readData);
-    });
-};
+// let getReadBooksData = () => {
+//     readBooks.getReadBooks().then(readData => {
+//         printReadBooksToDOM(readData);
+//     });
+// };
 
 module.exports = {
     getBooks, 

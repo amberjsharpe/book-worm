@@ -14,10 +14,11 @@ $(document).on("click", "button.wishlist-btn", function(event){
     search.checkWishListButton(event);
 });
 
-// Mark as read
-$(document).on("click", "button.markread-btn", function(event){
-    search.checkBooksReadButton(event);
-});
+// // Mark as read
+// $(document).on("click", "button.markread-btn", function(event){
+//     console.log("clicked");
+//     search.checkBooksReadButton(event);
+// });
 
 
 
