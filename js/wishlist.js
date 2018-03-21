@@ -28,13 +28,16 @@ function getWishList() {
     });
 }
 
-function deleteBooksWishlist(fbID) {
+function deleteFromWishlist(event) {
+    console.log("event", event);
     return $.ajax({
-      url: `${firebase.getFBsettings().databaseURL}/books/${fbID}.json`,
+      url: `${firebase.getFBsettings().databaseURL}/books/${event}.json`,
       method: 'DELETE'  
     }).done((fbData) => {
         return fbData;
     });
 }
 
-module.exports = {addToWishlist, getWishList};
+
+
+module.exports = {deleteFromWishlist, addToWishlist, getWishList};

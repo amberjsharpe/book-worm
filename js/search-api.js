@@ -67,6 +67,7 @@ function parseAndPrintBooks(value){
                 author: book.author.name['#text'],
                 image_url: book.image_url['#text'],
                 id: book.id['#text'],
+                key: "will get later"
             };
             booksArray.push(bookObject);
         });
@@ -94,21 +95,25 @@ let printWishlistToDOM = (wishData) => {
     $('#display').append('<div><h2>My Wishlist</h2></div>');
     let wishlistArray = [];
     for (let item in wishData) {
-        wishlistArray.push(wishData[item]);
+        let wishObj = wishData[item];
+        wishObj.key = item;
+        wishlistArray.push(wishObj);
+        console.log("item", wishObj);
     }
-    for (var i = 0; i < wishlistArray.length; i++) {
+    // for (var i = 0; i < wishlistArray.length; i++) {
+    wishlistArray.forEach(function(d, i) {
         var bookDiv =
-            `<div class="bookDisplay">
-            <h3 class="title">${wishlistArray[i].title}</h3>
-            <h4 class="author">Author: ${wishlistArray[i].author}</h4>
-            <img class="book-img" src="${wishlistArray[i].image_url}">
-            <button id="${wishlistArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-            <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
-            </div>
-        `;
-        document.querySelector('#display').innerHTML += bookDiv;
-
-    }
+        `<div class="bookDisplay">
+        <h3 class="title">${d.title}</h3>
+        <h4 class="author">Author: ${d.author}</h4>
+        <img class="book-img" src="${d.image_url}">
+        <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+        <button key="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+        </div>
+    `;
+    document.querySelector('#display').innerHTML += bookDiv;
+    });
+    
 };
 let checkWishListButton = (event) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
