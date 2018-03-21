@@ -2,6 +2,7 @@
 let $ = require("../lib/node_modules/jquery");
 let user = require("./user");
 let wishlist = require("./wishlist");
+let readBooks = require("./mark-read");
 let getUser = user.getUser;
 
 // Pull API
@@ -58,7 +59,7 @@ function xmlToJson(xml) {
 	return obj;
 }
 
-// Parses and pushes to booksArray
+// Search and Home Page
 let booksArray = [];
 
 function parseAndPrintBooks(value){
@@ -96,6 +97,8 @@ let printSearchResultsToDOM = (booksArray) => {
     }
 };
 
+// Wishlist
+
 let printWishlistToDOM = (wishData) => {
     $('#display').empty();
     $('#display').append(`<div><h2>My Wishlist</h2></div>`);
@@ -112,7 +115,7 @@ let printWishlistToDOM = (wishData) => {
             <h4 class="author">Author: ${wishlistArray[i].author}</h4>
             <img class="book-img" src="${wishlistArray[i].image_url}">
             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+            <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
         document.querySelector("#display").innerHTML += bookDiv;
@@ -132,6 +135,43 @@ let getWishListData = () => {
     });
 };
 
+// Mark as Read
+
+let printReadBooksToDOM = (readData) => {
+    $('#display').empty();
+    $('#display').append(`<div><h2>Books I've Read</h2></div>`);
+
+    let booksReadArray = [];
+    for (let item in readData) {
+        booksReadArray.push(readData[item]);
+    }
+
+    for (var i = 0; i < booksReadArray.length; i++) {
+        var bookDiv = 
+            `<div class="bookDisplay">
+            <h3 class="title">${booksReadArray[i].title}</h3>
+            <h4 class="author">Author: ${booksReadArray[i].author}</h4>
+            <img class="book-img" src="${booksReadArray[i].image_url}">
+            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+            </div>
+        `;
+        document.querySelector("#display").innerHTML += bookDiv;
+    }
+};
+
+let checkBooksReadButton = (event) => {
+    let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
+    readBooks.addToMarkRead(matchedBook).then(readData => {
+        console.log(readData);
+    });   
+};
+
+let getReadBooksData = () => {
+    readBooks.getReadBooks().then(readData => {
+        printReadBooksToDOM(readData);
+    });
+};
 
 module.exports = {
     getBooks, 
@@ -140,5 +180,7 @@ module.exports = {
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
     checkWishListButton,
-    getWishListData
+    getWishListData,
+    checkBooksReadButton,
+    getReadBooksData
 };
