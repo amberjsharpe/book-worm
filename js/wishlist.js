@@ -28,4 +28,5 @@ function getWishList() {
     });
 }
 
-module.exports = {deleteBooksWishlist, addToWishlist, getWishList};
+
+module.exports = {addToWishlist, getWishList};

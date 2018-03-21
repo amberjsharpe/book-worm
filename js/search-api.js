@@ -69,7 +69,6 @@ function parseAndPrintBooks(value){
                 id: book.id['#text'],
             };
             booksArray.push(bookObject);
-            console.log(bookObject);
         });
         printSearchResultsToDOM(booksArray);
     });
@@ -113,7 +112,6 @@ let printWishlistToDOM = (wishData) => {
 let checkWishListButton = (event) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
     wishlist.addToWishlist(matchedBook).then(wishlistData => {
-        console.log(wishlistData);
     });
 };
 let getWishListData = () => {
@@ -123,7 +121,7 @@ let getWishListData = () => {
 };
 
 let deleteFromWishlist = () => {
-    wishlist.deleteBooksWishlist().then(wishlistData => {       
+    deleteBooksWishlist().then(wishlistData => {       
     });
 };
 
