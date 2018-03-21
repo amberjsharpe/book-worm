@@ -11,10 +11,10 @@ $(".search-btn").on("click", function(event) {
 
 // Add to wishlist button
 $(document).on("click", "button.wishlist-btn", function(event){
-    search.checkWishListButton(event, search.booksArray);
+    search.checkWishListButton(event);
 });
 
 // Wishlist nav button
 $(document).on("click", "#wishlist-btn", function(event) {
-    search.getWishList();
+    search.getWishListData();
 });
