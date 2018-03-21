@@ -27,4 +27,14 @@ function getWishList() {
     });
 }
 
-module.exports = {addToWishlist, getWishList};
+// Delete to Firebase
+function deleteBooksWishlist(fbID) {
+    return $.ajax({
+      url: `${firebase.getFBsettings().databaseURL}/books/${id}.json`,
+      method: 'DELETE'  
+    }).done((favData) => {
+        return favData;
+    });
+}
+
+module.exports = {deleteBooksWishlist, addToWishlist, getWishList};
