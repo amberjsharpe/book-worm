@@ -123,8 +123,7 @@ let getWishListData = () => {
 };
 
 let deleteFromWishlist = () => {
-    wishlist.deleteBooksWishlist().then(wishlistData => {
-        
+    wishlist.deleteBooksWishlist().then(wishlistData => {       
     });
 };
 

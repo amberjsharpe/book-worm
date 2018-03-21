@@ -1,9 +1,10 @@
 "use strict";
 
 let $ = require("../lib/node_modules/jquery"),
-    firebase = require("./fb-config");
+    firebase = require("./fb-config"),
+    wishlist = require('./wishlist');
 
-
+   
 // Add to Firebase    
 function addToWishlist(wishlistObject) {
     console.log("wishlistObject", wishlistObject);
@@ -24,16 +25,6 @@ function getWishList() {
         dataType: 'json'
     }).done((fbID) => {
         return fbID;
-    });
-}
-
-// Delete to Firebase
-function deleteBooksWishlist(id) {
-    return $.ajax({
-      url: `${firebase.getFBsettings().databaseURL}/wishlist${id}.json`,
-      method: 'DELETE'  
-    }).done((favData) => {
-        return favData;
     });
 }
 
