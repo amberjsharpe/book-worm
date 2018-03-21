@@ -14,7 +14,23 @@ $(document).on("click", "button.wishlist-btn", function(event){
     search.checkWishListButton(event);
 });
 
-// Wishlist nav button
+// // Mark as read
+// $(document).on("click", "button.markread-btn", function(event){
+//     console.log("clicked");
+//     search.checkBooksReadButton(event);
+// });
+
+
+
+// ** Nav buttons ** //
+
+// Home button
+$(document).on("click", "#home-btn", function(event) {
+    $('#display').empty();
+});
+
+// Wishlist button
 $(document).on("click", "#wishlist-btn", function(event) {
     search.getWishListData();
 });
+
