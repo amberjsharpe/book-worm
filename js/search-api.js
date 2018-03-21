@@ -107,6 +107,7 @@ let printWishlistToDOM = (wishData) => {
             </div>
         `;
         document.querySelector('#display').innerHTML += bookDiv;
+
     }
 };
 let checkWishListButton = (event) => {
@@ -120,10 +121,10 @@ let getWishListData = () => {
     });
 };
 
-let deleteFromWishlist = () => {
-    deleteBooksWishlist().then(wishlistData => {       
-    });
-};
+// let deleteFromWishlist = () => {
+//     deleteBooksWishlist().then(wishlistData => {       
+//     });
+// };
 
 // Mark as Read
 let printReadBooksToDOM = (readData) => {
@@ -169,6 +170,5 @@ module.exports = {
     checkWishListButton,
     getWishListData,
     checkBooksReadButton,
-    getReadBooksData,
-    deleteFromWishlist
+    getReadBooksData
 };
