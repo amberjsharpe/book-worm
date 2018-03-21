@@ -32,4 +32,7 @@ $(document).on('click', '#wishlist-btn', function(event) {
 });
 
 // Mark as Read nav button
+$(document).on('click', 'readbooks-btn', function() {
+    search.getReadBooksData();
+})
 

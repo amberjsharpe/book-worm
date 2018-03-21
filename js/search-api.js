@@ -126,6 +126,7 @@ let printReadBooksToDOM = (readData) => {
     let booksReadArray = [];
     for (let item in readData) {
         booksReadArray.push(readData[item]);
+        booksArray.push(readData[item]);
     }
     for (var i = 0; i < booksReadArray.length; i++) {
         var bookDiv =
