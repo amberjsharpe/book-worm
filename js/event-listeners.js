@@ -14,7 +14,16 @@ $(document).on("click", "button.wishlist-btn", function(event){
     search.checkWishListButton(event);
 });
 
-// Wishlist nav button
+// ** Nav buttons ** //
+
+// Home button
+
+$(document).on("click", "#home-btn", function(event) {
+    $('#display').empty();
+})
+
+// Wishlist button
 $(document).on("click", "#wishlist-btn", function(event) {
     search.getWishListData();
 });
+

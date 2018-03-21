@@ -112,6 +112,7 @@ let printWishlistToDOM = (wishData) => {
             <h4 class="author">Author: ${wishlistArray[i].author}</h4>
             <img class="book-img" src="${wishlistArray[i].image_url}">
             <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
         document.querySelector("#display").innerHTML += bookDiv;
