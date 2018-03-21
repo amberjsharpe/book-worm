@@ -59,17 +59,12 @@ function xmlToJson(xml) {
 }
 
 // Parses and pushes to booksArray
-// let booksArray = [];
+let booksArray = [];
 
 function parseAndPrintBooks(value){
-    console.log(value);
-    let booksArray = [];
     getBooks(value).then((books) => {
-        console.log("books", books);
         let jsonText = xmlToJson(books);
-        console.log("jsontext", jsonText);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
-        console.log("booksData", booksData);
         booksData.forEach(function(item) {
             var book = item.best_book;
             let bookObject = {
@@ -101,25 +96,40 @@ let printSearchResultsToDOM = (booksArray) => {
     }
 };
 
+let printWishlistToDOM = (wishData) => {
+    $('#display').empty();
+    $('#display').append(`<div><h2>My Wishlist</h2></div>`);
 
+    let wishlistArray = [];
+    for (let item in wishData) {
+        wishlistArray.push(wishData[item]);
+    }
 
-// Wishlist //
+    for (var i = 0; i < wishlistArray.length; i++) {
+        var bookDiv = 
+            `<div class="bookDisplay">
+            <h3 class="title">${wishlistArray[i].title}</h3>
+            <h4 class="author">Author: ${wishlistArray[i].author}</h4>
+            <img class="book-img" src="${wishlistArray[i].image_url}">
+            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            </div>
+        `;
+        document.querySelector("#display").innerHTML += bookDiv;
+    }
+};
 
-let checkWishListButton = (event, booksArray) => {
+let checkWishListButton = (event) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
     wishlist.addToWishlist(matchedBook).then(wishlistData => {
         console.log(wishlistData);
     });   
 };
 
-let wishlistArray = [];
-
-let getWishList = () => {
+let getWishListData = () => {
     wishlist.getWishList().then(wishlistData => {
-      
+        printWishlistToDOM(wishlistData);
     });
 };
-
 
 
 module.exports = {
@@ -129,5 +139,5 @@ module.exports = {
     parseAndPrintBooks, 
     printSearchResultsToDOM, 
     checkWishListButton,
-    getWishList
+    getWishListData
 };
