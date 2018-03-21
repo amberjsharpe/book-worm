@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
 	if (user){
 		currentUser = user.uid;
-		return currentUser;
+		console.log("current user Logged in?", currentUser);
 	} else {
 		currentUser = null;
 		console.log("current user NOT logged in:", currentUser);

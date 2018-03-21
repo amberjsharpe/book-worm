@@ -5,7 +5,6 @@ let readBooks = require('./mark-read');
 let user = require('./user');
 let firebase = require("./fb-config");
 
-let userUID = user.getUser();
 // Pull API
 function getBooks(searchBooks) {
     return $.ajax({
@@ -68,11 +67,9 @@ function parseAndPrintBooks(value){
                 author: book.author.name['#text'],
                 image_url: book.image_url['#text'],
                 id: book.id['#text'],
-                uid: userUID
             };
             booksArray.push(bookObject);
             console.log(bookObject);
-            console.log(userUID);
         });
         printSearchResultsToDOM(booksArray);
     });
@@ -99,7 +96,6 @@ let printWishlistToDOM = (wishData) => {
     let wishlistArray = [];
     for (let item in wishData) {
         wishlistArray.push(wishData[item]);
-        booksArray.push(wishData[item]);
     }
     for (var i = 0; i < wishlistArray.length; i++) {
         var bookDiv =
@@ -128,8 +124,7 @@ let getWishListData = () => {
 
 let deleteFromWishlist = () => {
     wishlist.deleteBooksWishlist().then(wishlistData => {
-        printWishlistToDOM(wishlistData);
-        console.log(wishlistData);
+        
     });
 };
 
@@ -140,7 +135,7 @@ let printReadBooksToDOM = (readData) => {
     let booksReadArray = [];
     for (let item in readData) {
         booksReadArray.push(readData[item]);
-        booksArray.push(readData[item]);
+
     }
     for (var i = 0; i < booksReadArray.length; i++) {
         var bookDiv =

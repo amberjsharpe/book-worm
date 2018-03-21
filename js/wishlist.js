@@ -28,9 +28,9 @@ function getWishList() {
 }
 
 // Delete to Firebase
-function deleteBooksWishlist(fbID) {
+function deleteBooksWishlist(id) {
     return $.ajax({
-      url: `${firebase.getFBsettings().databaseURL}/books/${id}.json`,
+      url: `${firebase.getFBsettings().databaseURL}/wishlist${id}.json`,
       method: 'DELETE'  
     }).done((favData) => {
         return favData;
