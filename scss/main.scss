@@ -79,6 +79,13 @@ img {
 .card {
     width: 325px;
     height: 400px;
+    position: relative;
+}
+
+.wishlist-btn, .markread-btn, .delete-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 #search-input {
