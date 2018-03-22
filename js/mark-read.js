@@ -25,4 +25,14 @@ function getReadBooks() {
     });
 }
 
-module.exports = {addToMarkRead, getReadBooks};
+function deleteFromRead(fbID) {
+    console.log("fbid", fbID);
+    return $.ajax({
+      url: `${firebase.getFBsettings().databaseURL}/read/${fbID}.json`,
+      method: 'DELETE'  
+    }).done((fbData) => {
+        return fbData;
+    });
+}
+
+module.exports = {deleteFromRead, addToMarkRead, getReadBooks};

@@ -25,6 +25,12 @@ $(document).on('click', 'button.delete-btn', function(event) {
     console.log("clicked");
 });
 
+// Delete from Read
+$(document).on('click', 'button.delete-btn', function(event) {
+    search.deleteFromRead(event);
+    console.log("clicked");
+});
+
 // ** Nav buttons ** //
 
 // Home button

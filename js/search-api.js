@@ -67,8 +67,7 @@ function parseAndPrintBooks(value){
                 title: book.title['#text'],
                 author: book.author.name['#text'],
                 image_url: book.image_url['#text'],
-                id: book.id['#text'],
-                key: "will get later"
+                id: book.id['#text']
             };
             booksArray.push(bookObject);
         });
@@ -139,22 +138,25 @@ let printReadBooksToDOM = (readData) => {
     $('#display').empty();
     $('#display').append('<div><h2>Books I\'ve Read</h2></div>');
     let booksReadArray = [];
-    for (let item in readData) {
-        booksReadArray.push(readData[item]);
 
+    for (let item in readData) {
+        let readObj = readData[item];
+        readObj.key = item;
+        booksReadArray.push(readObj);
+        console.log("item", readObj);
     }
-    for (var i = 0; i < booksReadArray.length; i++) {
+    booksReadArray.forEach(function(d, i) {
         var bookDiv =
             `<div class="bookDisplay">
-            <h3 class="title">${booksReadArray[i].title}</h3>
-            <h4 class="author">Author: ${booksReadArray[i].author}</h4>
-            <img class="book-img" src="${booksReadArray[i].image_url}">
-            <button class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-            <button class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+            <h3 class="title">${d.title}</h3>
+            <h4 class="author">Author: ${d.author}</h4>
+            <img class="book-img" src="${d.image_url}">
+            <button class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+            <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
         document.querySelector('#display').innerHTML += bookDiv;
-    }
+    });
 };
 let checkBooksReadButton = (event) => {
     let matchedBook = booksArray.filter(i => `${i.id}-read` === `${event.target.id}`)[0];
@@ -169,6 +171,14 @@ let getReadBooksData = () => {
         console.log(readBooks);
     });
 };
+
+let deleteFromRead = (event) => {
+    console.log("eventtarget", event.target);
+    readBooks.deleteFromRead(event.target.id).then(readData => {  
+     $(`#${event.target.id}`).closest('div').remove();
+    });
+};
+
 module.exports = {
     getBooks,
     searchInputValue,
@@ -179,5 +189,6 @@ module.exports = {
     getWishListData,
     checkBooksReadButton,
     getReadBooksData,
-    deleteFromWishlist
+    deleteFromWishlist,
+    deleteFromRead
 };
