@@ -78,10 +78,10 @@ let printSearchResultsToDOM = (booksArray) => {
     $('#display').append('<div><h2>Search Results</h2></div>');
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv =
-            `<div class="bookDisplay">
-            <h3 class="title">${booksArray[i].title}</h3>
-            <h4 class="author">Author: ${booksArray[i].author}</h4>
-            <img class="book-img" src="${booksArray[i].image_url}">
+            `<div class="bookDisplay card" style="width: 18rem;">
+            <h3 class="title card-title">${booksArray[i].title}</h3>
+            <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
+            <img class="book-img card-img-top center" src="${booksArray[i].image_url}">
             <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
@@ -151,7 +151,6 @@ let printReadBooksToDOM = (readData) => {
             <h3 class="title">${d.title}</h3>
             <h4 class="author">Author: ${d.author}</h4>
             <img class="book-img" src="${d.image_url}">
-            <button class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
