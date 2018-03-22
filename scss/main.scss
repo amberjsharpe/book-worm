@@ -65,10 +65,20 @@ img {
     height: 195px;
 }
 
+#display {
+    display: flex; 
+    flex-wrap: wrap;  
+}
+
 .book-img {
     width: 175px;
-    height: 250px;
-      
+    height: 225px;
+
+}
+
+.card {
+    width: 325px;
+    height: 400px;
 }
 
 #search-input {
@@ -85,6 +95,8 @@ img {
     color: $secondaryOrange-color;
     box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
 }
+
+
 
 
 

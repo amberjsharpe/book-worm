@@ -35,6 +35,7 @@ $(document).on('click', 'button.delete-btn', function(event) {
 
 // Home button
 $(document).on('click', '#home-btn', function(event) {
+    $('#heading-display').empty();
     $('#display').empty();
 });
 

@@ -75,13 +75,14 @@ function parseAndPrintBooks(value){
     });
 }
 let printSearchResultsToDOM = (booksArray) => {
-    $('#display').append('<div><h2>Search Results</h2></div>');
+    $('#heading-display').empty();
+    $('#heading-display').append('<div><h2>Search Results</h2></div>');
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv =
-            `<div class="bookDisplay card" style="width: 18rem;">
+            `<div class="bookDisplay card">
             <h3 class="title card-title">${booksArray[i].title}</h3>
             <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
-            <img class="book-img card-img-top center" src="${booksArray[i].image_url}">
+            <img class="book-img card-img-top" src="${booksArray[i].image_url}">
             <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
             <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
@@ -91,8 +92,9 @@ let printSearchResultsToDOM = (booksArray) => {
 };
 // Wishlist
 let printWishlistToDOM = (wishData) => {
+    $('#heading-display').empty();
     $('#display').empty();
-    $('#display').append('<div><h2>My Wishlist</h2></div>');
+    $('#heading-display').append('<div><h2>My Wishlist</h2></div>');
     let wishlistArray = [];
     for (let item in wishData) {
         let wishObj = wishData[item];
@@ -103,10 +105,10 @@ let printWishlistToDOM = (wishData) => {
 
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
-        `<div class="bookDisplay">
-        <h3 class="title">${d.title}</h3>
-        <h4 class="author">Author: ${d.author}</h4>
-        <img class="book-img" src="${d.image_url}">
+        `<div class="bookDisplay card">
+        <h3 class="title card-title">${d.title}</h3>
+        <h4 class="author card-text">Author: ${d.author}</h4>
+        <img class="book-img card-img-top" src="${d.image_url}">
         <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
         <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
         </div>
@@ -135,8 +137,9 @@ let deleteFromWishlist = (event) => {
 
 // Mark as Read
 let printReadBooksToDOM = (readData) => {
+    $('#heading-display').empty();
     $('#display').empty();
-    $('#display').append('<div><h2>Books I\'ve Read</h2></div>');
+    $('#heading-display').append('<div><h2>Books I\'ve Read</h2></div>');
     let booksReadArray = [];
 
     for (let item in readData) {
@@ -147,10 +150,10 @@ let printReadBooksToDOM = (readData) => {
     }
     booksReadArray.forEach(function(d, i) {
         var bookDiv =
-            `<div class="bookDisplay">
-            <h3 class="title">${d.title}</h3>
-            <h4 class="author">Author: ${d.author}</h4>
-            <img class="book-img" src="${d.image_url}">
+            `<div class="bookDisplay card">
+            <h3 class="title card-title">${d.title}</h3>
+            <h4 class="author card-text">Author: ${d.author}</h4>
+            <img class="book-img card-img-top" src="${d.image_url}">
             <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
             </div>
         `;
