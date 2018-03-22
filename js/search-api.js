@@ -57,6 +57,7 @@ function xmlToJson(xml) {
 // Search and Home Page
 let booksArray = [];
 function parseAndPrintBooks(value){
+    booksArray = [];
     getBooks(value).then((books) => {
         let jsonText = xmlToJson(books);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
@@ -100,7 +101,7 @@ let printWishlistToDOM = (wishData) => {
         wishlistArray.push(wishObj);
         console.log("item", wishObj);
     }
-    // for (var i = 0; i < wishlistArray.length; i++) {
+
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
         `<div class="bookDisplay">
@@ -108,7 +109,7 @@ let printWishlistToDOM = (wishData) => {
         <h4 class="author">Author: ${d.author}</h4>
         <img class="book-img" src="${d.image_url}">
         <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-        <button key="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+        <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
         </div>
     `;
     document.querySelector('#display').innerHTML += bookDiv;
@@ -126,10 +127,12 @@ let getWishListData = () => {
     });
 };
 
-// let deleteFromWishlist = () => {
-//     deleteBooksWishlist().then(wishlistData => {       
-//     });
-// };
+let deleteFromWishlist = (event) => {
+    console.log("eventtarget", event.target);
+    wishlist.deleteFromWishlist(event.target.id).then(wishlistData => {  
+     $(`#${event.target.id}`).closest('div').remove();
+    });
+};
 
 // Mark as Read
 let printReadBooksToDOM = (readData) => {
@@ -175,5 +178,6 @@ module.exports = {
     checkWishListButton,
     getWishListData,
     checkBooksReadButton,
-    getReadBooksData
+    getReadBooksData,
+    deleteFromWishlist
 };

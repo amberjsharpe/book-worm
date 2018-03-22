@@ -21,7 +21,7 @@ $(document).on('click', 'button.markread-btn', function(event){
 
 // Delete from Wishlist
 $(document).on('click', 'button.delete-btn', function(event) {
-    wishlist.deleteFromWishlist(event);
+    search.deleteFromWishlist(event);
     console.log("clicked");
 });
 

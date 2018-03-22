@@ -28,10 +28,10 @@ function getWishList() {
     });
 }
 
-function deleteFromWishlist(event) {
-    console.log("event", event);
+function deleteFromWishlist(fbID) {
+    console.log("fbid", fbID);
     return $.ajax({
-      url: `${firebase.getFBsettings().databaseURL}/books/${event}.json`,
+      url: `${firebase.getFBsettings().databaseURL}/wishlist/${fbID}.json`,
       method: 'DELETE'  
     }).done((fbData) => {
         return fbData;
