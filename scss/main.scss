@@ -67,18 +67,21 @@ img {
 
 #display {
     display: flex; 
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
+    padding: 45px;  
 }
 
 .book-img {
-    width: 175px;
-    height: 225px;
-
+    width: 125px;
+    height: 190px;
+    padding-bottom: 3px;
 }
 
 .card {
-    width: 325px;
-    height: 400px;
+    width: 400px;
+    height: 300px;
+    padding: 5px;
+    margin: 15px;
     position: relative;
 }
 
