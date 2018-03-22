@@ -65,6 +65,32 @@ img {
     height: 195px;
 }
 
+#display {
+    display: flex; 
+    flex-wrap: wrap;
+    padding: 45px;  
+}
+
+.book-img {
+    width: 125px;
+    height: 190px;
+    padding-bottom: 3px;
+}
+
+.card {
+    width: 400px;
+    height: 300px;
+    padding: 5px;
+    margin: 15px;
+    position: relative;
+}
+
+.wishlist-btn, .markread-btn, .delete-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 #search-input {
     width: 400px;
 }
@@ -79,6 +105,8 @@ img {
     color: $secondaryOrange-color;
     box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
 }
+
+
 
 
 
