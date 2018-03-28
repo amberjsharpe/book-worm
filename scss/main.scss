@@ -53,17 +53,45 @@ p {
     color: $secondaryOrange-color;
 }
 
+#logo-signin-header {
+    height: 138px;
+}
+
+#bookworm {
+    padding-top: 15px;
+}
+
 .header-nav {
     background-color: $secondaryPink-color;
     background: linear-gradient(to bottom right, $secondaryPink-color, $secondaryOrange-color);
-    border: 1px $lightGray-color solid;
+    border-top: 1px $lightGray-color solid;
+    border-bottom: 1px $lightGray-color solid;
     box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
-    height: 150px;
+    height: 85px;
     justify-content: space-between;
 }
 
 .left-header-item {
     padding: 0px;
+}
+
+#heading-display {
+    margin: 15px;
+    padding: 0 45px;
+}
+
+#search-input {
+    width: 400px;
+}
+
+.btn {
+    color: $black-color;
+    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.4);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline-success {
+    border-color: white;
 }
 
 body {
@@ -72,13 +100,13 @@ body {
 
 img {
     width: 130px;
-    height: 155px;
+    height: 130px;
 }
 
 #display {
     display: flex; 
     flex-wrap: wrap;
-    padding: 45px;  
+    padding: 0 45px;
 }
 
 .book-img {
@@ -90,24 +118,26 @@ img {
 .card {
     width: 400px;
     height: 350px;
-    padding: 5px;
+    padding: 15px;
     margin: 15px;
 }
 
-#search-input {
-    width: 400px;
+.book-btn-display {
+    display: flex;
 }
 
-.btn-outline-success {
-    border-color: $primaryTeal-color;
-    background-color: whitesmoke;
-    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+.delete-btn {
+    width: 125px;
 }
 
-.search-btn {
-    color: $secondaryOrange-color;
-    box-shadow: 0px 3px 15px rgba(0,0,0.2,0.3);
+.markread-btn {
+    width: 125px;
 }
+
+
+
+
+
 
 
 

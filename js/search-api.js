@@ -13,6 +13,7 @@ function getBooks(searchBooks) {
         dataType: 'xml'
     });
 }
+
 // Get value from Search Input
 let searchInputValue = () => {
     $('#display').empty();
@@ -59,8 +60,11 @@ let booksArray = [];
 function parseAndPrintBooks(value){
     booksArray = [];
     getBooks(value).then((books) => {
+        console.log(books);
         let jsonText = xmlToJson(books);
+        console.log(jsonText);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
+        console.log(booksData);
         booksData.forEach(function(item) {
             var book = item.best_book;
             let bookObject = {
@@ -80,11 +84,13 @@ let printSearchResultsToDOM = (booksArray) => {
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv =
             `<div class="bookDisplay card">
-            <h3 class="title card-title">${booksArray[i].title}</h3>
-            <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
-            <img class="book-img card-img-top" src="${booksArray[i].image_url}">
-            <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
-            <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+                <img class="book-img card-img-top" src="${booksArray[i].image_url}">
+                <h3 class="title card-title">${booksArray[i].title}</h3>
+                <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
+                <div class="book-btn-display">
+                    <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+                    <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+                </div>    
             </div>
         `;
         document.querySelector('#display').innerHTML += bookDiv;
@@ -106,11 +112,13 @@ let printWishlistToDOM = (wishData) => {
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
         `<div class="bookDisplay card">
-        <h3 class="title card-title">${d.title}</h3>
-        <h4 class="author card-text">Author: ${d.author}</h4>
-        <img class="book-img card-img-top" src="${d.image_url}">
-        <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
-        <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+            <img class="book-img card-img-top" src="${d.image_url}">
+            <h3 class="title card-title">${d.title}</h3>
+            <h4 class="author card-text">Author: ${d.author}</h4>
+            <div class="book-btn-display">
+                <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
+            </div>
         </div>
     `;
     document.querySelector('#display').innerHTML += bookDiv;
@@ -151,10 +159,12 @@ let printReadBooksToDOM = (readData) => {
     booksReadArray.forEach(function(d, i) {
         var bookDiv =
             `<div class="bookDisplay card">
-            <h3 class="title card-title">${d.title}</h3>
-            <h4 class="author card-text">Author: ${d.author}</h4>
-            <img class="book-img card-img-top" src="${d.image_url}">
-            <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                <img class="book-img card-img-top" src="${d.image_url}">
+                <h3 class="title card-title">${d.title}</h3>
+                <h4 class="author card-text">Author: ${d.author}</h4>
+                <div class="book-btn-display">
+                    <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                </div>     
             </div>
         `;
         document.querySelector('#display').innerHTML += bookDiv;
