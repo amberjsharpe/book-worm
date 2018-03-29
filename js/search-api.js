@@ -77,14 +77,9 @@ function parseAndPrintBooks(value){
 }
 
 
-
-
-
-
-
 let printSearchResultsToDOM = (booksArray) => {
     $('#heading-display').empty();
-    $('#heading-display').append('<div><h2>Search Results</h2></div>');
+    $('#heading-display').append(`<div><h2>Search Results (${booksArray.length})</h2></div>`);
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv =
             `<div class="bookDisplay card">
@@ -104,7 +99,7 @@ let printSearchResultsToDOM = (booksArray) => {
 let printWishlistToDOM = (wishData) => {
     $('#heading-display').empty();
     $('#display').empty();
-    $('#heading-display').append('<div><h2>My Wishlist</h2></div>');
+    
     let wishlistArray = [];
     for (let item in wishData) {
         let wishObj = wishData[item];
@@ -112,7 +107,7 @@ let printWishlistToDOM = (wishData) => {
         wishlistArray.push(wishObj);
         console.log("item", wishObj);
     }
-
+    $('#heading-display').append(`<div><h2>My Wishlist (${wishlistArray.length})</h2></div>`);
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
         `<div class="bookDisplay card">
@@ -151,7 +146,7 @@ let deleteFromWishlist = (event) => {
 let printReadBooksToDOM = (readData) => {
     $('#heading-display').empty();
     $('#display').empty();
-    $('#heading-display').append('<div><h2>Books I\'ve Read</h2></div>');
+    
     let booksReadArray = [];
 
     for (let item in readData) {
@@ -160,6 +155,7 @@ let printReadBooksToDOM = (readData) => {
         booksReadArray.push(readObj);
         console.log("item", readObj);
     }
+    $('#heading-display').append(`<div><h2>Books I\'ve Read (${booksReadArray.length})</h2></div>`);
     booksReadArray.forEach(function(d, i) {
         var bookDiv =
             `<div class="bookDisplay card">
@@ -196,6 +192,7 @@ let deleteFromRead = (event) => {
 };
 
 module.exports = {
+    booksArray,
     getBooks,
     searchInputValue,
     xmlToJson,

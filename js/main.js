@@ -6,3 +6,4 @@ let firebase = require("./fb-config"),
     search = require("./search-api"),
     read = require("./mark-read");
     require("./event-listeners");
+    require("./results");
