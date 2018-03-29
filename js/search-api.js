@@ -14,6 +14,14 @@ function getBooks(searchBooks) {
     });
 }
 
+function getbookDescription(book_id) {
+    return $.ajax({
+        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id='${book_id}'`,
+        type: 'PATCH',
+        dataType: 'xml'   
+    });
+}
+
 // Get value from Search Input
 let searchInputValue = () => {
     $('#display').empty();
@@ -60,11 +68,8 @@ let booksArray = [];
 function parseAndPrintBooks(value){
     booksArray = [];
     getBooks(value).then((books) => {
-        console.log(books);
         let jsonText = xmlToJson(books);
-        console.log(jsonText);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
-        console.log(booksData);
         booksData.forEach(function(item) {
             var book = item.best_book;
             let bookObject = {
