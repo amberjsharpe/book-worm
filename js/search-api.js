@@ -14,14 +14,6 @@ function getBooks(searchBooks) {
     });
 }
 
-function getbookDescription(book_id) {
-    return $.ajax({
-        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id='${book_id}'`,
-        type: 'PATCH',
-        dataType: 'xml'   
-    });
-}
-
 // Get value from Search Input
 let searchInputValue = () => {
     $('#display').empty();
@@ -83,6 +75,13 @@ function parseAndPrintBooks(value){
         printSearchResultsToDOM(booksArray);
     });
 }
+
+
+
+
+
+
+
 let printSearchResultsToDOM = (booksArray) => {
     $('#heading-display').empty();
     $('#heading-display').append('<div><h2>Search Results</h2></div>');
