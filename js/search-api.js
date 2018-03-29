@@ -60,11 +60,8 @@ let booksArray = [];
 function parseAndPrintBooks(value){
     booksArray = [];
     getBooks(value).then((books) => {
-        console.log(books);
         let jsonText = xmlToJson(books);
-        console.log(jsonText);
         let booksData = jsonText.GoodreadsResponse.search.results.work;
-        console.log(booksData);
         booksData.forEach(function(item) {
             var book = item.best_book;
             let bookObject = {
@@ -78,6 +75,13 @@ function parseAndPrintBooks(value){
         printSearchResultsToDOM(booksArray);
     });
 }
+
+
+
+
+
+
+
 let printSearchResultsToDOM = (booksArray) => {
     $('#heading-display').empty();
     $('#heading-display').append('<div><h2>Search Results</h2></div>');
