@@ -9,6 +9,11 @@ $lightGray-color: #B4B9BE;
 $black-color: #222;
 
 html,
+body {
+    height:100%;
+}
+
+html,
 body,
 ul,
 ol {
@@ -135,10 +140,9 @@ img {
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    position: relative;
+    bottom:0;
+    width:100%;
 }
 
 

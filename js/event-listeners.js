@@ -2,6 +2,7 @@
 let search = require('./search-api');
 let wishlist = require('./wishlist');
 let $ = require('../lib/node_modules/jquery');
+let results = require('./results');
 
 // Search button
 $('.search-btn').on('click', function(event) {
