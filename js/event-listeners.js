@@ -33,7 +33,7 @@ $(document).on('click', 'button.read-delete-btn', function(event) {
 
 // See Description
 $(document).on('click', 'button.desc-btn', function(event) {
-    console.log("da button clicked");
+    console.log(search.getBookDescriptions(event.target.id));
 });
 
 // ** Nav buttons ** //

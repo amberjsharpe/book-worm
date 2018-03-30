@@ -34,17 +34,21 @@ h2 {
 }
 
 h3 {
-    font-size: 20px;
+    font-family: $font-family-sans-serif;
+    font-size: 18px;
+    color: $black-color;
 }
 
 h4 {
+    font-family: $font-family-serif;
     font-size: 14px;
+    color: $black-color;
 }
 
 p {
     font-family: $font-family-serif;
     font-size: 14px;
-    color: $darkGray-color;
+    color: $black-color;
 }
 
 .nav-btn,
@@ -117,12 +121,14 @@ img {
 }
 
 .book-img {
-    width: 125px;
-    height: 190px;
+    width: 145px;
+    height: 200px;
     padding-bottom: 3px;
 }
 
 .card {
+    display: flex;
+    flex-direction: row;
     width: 400px;
     height: 350px;
     padding: 15px;
@@ -131,6 +137,8 @@ img {
 
 .book-btn-display {
     display: flex;
+    width: 150px;
+    height: 115px;
 }
 
 .wish-delete-btn, .read-delete-btn {
