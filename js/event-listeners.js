@@ -31,6 +31,11 @@ $(document).on('click', 'button.read-delete-btn', function(event) {
     search.deleteFromRead(event);
 });
 
+// See Description
+$(document).on('click', 'button.desc-btn', function(event) {
+    console.log("da button clicked");
+});
+
 // ** Nav buttons ** //
 
 // Home button

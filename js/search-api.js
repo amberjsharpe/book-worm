@@ -14,15 +14,15 @@ function getBooks(searchBooks) {
     });
 }
 
-function getBookDescriptions(book_id) {
+function getBookDescriptions() {
     return $.ajax({
-        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${book_id}`,
+        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=15881`,
         type: 'GET',
         dataType: 'xml'
     });
 }
-getBookDescriptions();
 
+console.log(getBookDescriptions());
 
 // Get value from Search Input
 let searchInputValue = () => {
@@ -98,6 +98,7 @@ let printSearchResultsToDOM = (booksArray) => {
                 <h3 class="title card-title">${booksArray[i].title}</h3>
                 <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
                 <div class="book-btn-display">
+                    <button id=${booksArray[i].id}-desc" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                     <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
                     <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
                 </div>    
