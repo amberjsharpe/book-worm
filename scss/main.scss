@@ -47,11 +47,6 @@ p {
     color: $darkGray-color;
 }
 
-.top-header {
-
-    background: blue;
-}
-
 .nav-btn,
 .navbar-text {
     font-family: $font-family-sans-serif;
@@ -96,7 +91,7 @@ p {
 }
 
 .btn-outline-success {
-    border-color: white;
+    border-color: black;
 }
 
 body {
@@ -112,6 +107,12 @@ img {
     display: flex; 
     flex-wrap: wrap;
     padding: 0 45px;
+    min-height: 100%;
+}
+
+#loading {
+    position: absolute; 
+    background: url('./images/book.gif') no-repeat center center;
 }
 
 .book-img {

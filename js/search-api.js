@@ -5,7 +5,7 @@ let readBooks = require('./mark-read');
 let user = require('./user');
 let firebase = require("./fb-config");
 
-// Pull API
+// API calls
 function getBooks(searchBooks) {
     return $.ajax({
         url: `https://crossorigin.me/https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q='${searchBooks}'`,
@@ -13,6 +13,16 @@ function getBooks(searchBooks) {
         dataType: 'xml'
     });
 }
+
+function getBookDescriptions(book_id) {
+    return $.ajax({
+        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${book_id}`,
+        type: 'GET',
+        dataType: 'xml'
+    });
+}
+getBookDescriptions();
+ 
 
 // Get value from Search Input
 let searchInputValue = () => {
@@ -86,8 +96,8 @@ let printSearchResultsToDOM = (booksArray) => {
                 <img class="book-img card-img-top" src="${booksArray[i].image_url}">
                 <h3 class="title card-title">${booksArray[i].title}</h3>
                 <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
-                <div class="book-btn-display"> 
-                    <div id="${booksArray[i].id}" class="wishlist-btn"><img src="images/glyphicons-49-star-empty.png"></div>
+                <div class="book-btn-display">
+                    <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
                     <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
                 </div>    
             </div>
@@ -163,7 +173,6 @@ let printReadBooksToDOM = (readData) => {
                 <h3 class="title card-title">${d.title}</h3>
                 <h4 class="author card-text">Author: ${d.author}</h4>
                 <div class="book-btn-display">
-                    <div id="${d.id}" class="wishlist-btn"><img src="images/glyphicons-49-star-empty.png"></div>
                     <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
                 </div>     
             </div>
