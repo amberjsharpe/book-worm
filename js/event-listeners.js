@@ -4,6 +4,11 @@ let wishlist = require('./wishlist');
 let $ = require('../lib/node_modules/jquery');
 let results = require('./results');
 
+// Spinner 
+$(window).ready(function() {
+    $('#loading').hide();
+});
+
 // Search button
 $('.search-btn').on('click', function(event) {
     event.preventDefault();

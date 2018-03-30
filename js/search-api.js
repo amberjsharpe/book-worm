@@ -5,7 +5,7 @@ let readBooks = require('./mark-read');
 let user = require('./user');
 let firebase = require("./fb-config");
 
-// Pull API
+// API calls
 function getBooks(searchBooks) {
     return $.ajax({
         url: `https://crossorigin.me/https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q='${searchBooks}'`,
@@ -13,6 +13,16 @@ function getBooks(searchBooks) {
         dataType: 'xml'
     });
 }
+
+function getBookDescriptions(book_id) {
+    return $.ajax({
+        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${book_id}`,
+        type: 'GET',
+        dataType: 'xml'
+    });
+}
+getBookDescriptions();
+ 
 
 // Get value from Search Input
 let searchInputValue = () => {
