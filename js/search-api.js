@@ -22,11 +22,12 @@ function getBookDescriptions(book_id) {
     });
 }
 getBookDescriptions();
- 
+
 
 // Get value from Search Input
 let searchInputValue = () => {
     $('#display').empty();
+    $("#loading-display").addClass("loading");
     let value = $('#search').val();
     parseAndPrintBooks(value);
     $('#search').val('');
@@ -102,30 +103,31 @@ let printSearchResultsToDOM = (booksArray) => {
                 </div>    
             </div>
         `;
+        $("#loading-display").removeClass("loading");
         document.querySelector('#display').innerHTML += bookDiv;
     }
 };
 // Wishlist
+let wishlistArray = [];
 let printWishlistToDOM = (wishData) => {
     $('#heading-display').empty();
     $('#display').empty();
     
-    let wishlistArray = [];
+    wishlistArray = [];
     for (let item in wishData) {
         let wishObj = wishData[item];
         wishObj.key = item;
         wishlistArray.push(wishObj);
-        console.log("item", wishObj);
     }
     $('#heading-display').append(`<div><h2>My Wishlist (${wishlistArray.length})</h2></div>`);
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
-        `<div class="bookDisplay card">
+        `<div class="bookDisplay card wishlist-card">
             <img class="book-img card-img-top" src="${d.image_url}">
             <h3 class="title card-title">${d.title}</h3>
             <h4 class="author card-text">Author: ${d.author}</h4>
             <div class="book-btn-display">
-                <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                <button id="${d.key}" class="wish-delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
                 <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         </div>
@@ -134,11 +136,13 @@ let printWishlistToDOM = (wishData) => {
     });
     
 };
+
 let checkWishListButton = (event) => {
     let matchedBook = booksArray.filter(i => i.id === event.target.id)[0];
     wishlist.addToWishlist(matchedBook).then(wishlistData => {
     });
 };
+
 let getWishListData = () => {
     wishlist.getWishList().then(wishlistData => {
         printWishlistToDOM(wishlistData);
@@ -146,58 +150,70 @@ let getWishListData = () => {
 };
 
 let deleteFromWishlist = (event) => {
-    console.log("eventtarget", event.target);
     wishlist.deleteFromWishlist(event.target.id).then(wishlistData => {  
-     $(`#${event.target.id}`).closest('div').remove();
+        $(`#${event.target.id}`).closest('.bookDisplay').remove();
+        wishlistArray = wishlistArray.filter(i => i.key !== event.target.id);
+        $('#heading-display').replaceWith(`<div id="heading-display"><div><h2>My Wishlist (${wishlistArray.length})</h2></div></div>`);
     });
 };
 
 // Mark as Read
+let booksReadArray = [];
 let printReadBooksToDOM = (readData) => {
     $('#heading-display').empty();
     $('#display').empty();
     
-    let booksReadArray = [];
+    booksReadArray = [];
 
     for (let item in readData) {
         let readObj = readData[item];
         readObj.key = item;
         booksReadArray.push(readObj);
-        console.log("item", readObj);
     }
+
     $('#heading-display').append(`<div><h2>Books I\'ve Read (${booksReadArray.length})</h2></div>`);
     booksReadArray.forEach(function(d, i) {
         var bookDiv =
-            `<div class="bookDisplay card">
+            `<div class="bookDisplay card search-card">
                 <img class="book-img card-img-top" src="${d.image_url}">
                 <h3 class="title card-title">${d.title}</h3>
                 <h4 class="author card-text">Author: ${d.author}</h4>
                 <div class="book-btn-display">
-                    <button id="${d.key}" class="delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                    <button id="${d.key}" class="read-delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
                 </div>     
             </div>
         `;
         document.querySelector('#display').innerHTML += bookDiv;
     });
 };
+
 let checkBooksReadButton = (event) => {
-    let matchedBook = booksArray.filter(i => `${i.id}-read` === `${event.target.id}`)[0];
+    let card = event.target.closest('.card');
+    let arr;
+        
+    if ($(card).hasClass('wishlist-card')) {
+        arr = wishlistArray;
+    } else {
+        arr = booksArray;
+    }
+
+    let matchedBook = arr.filter(i => `${i.id}-read` === `${event.target.id}`)[0];
     readBooks.addToMarkRead(matchedBook).then(readData => {
         console.log(readData);
     });
 };
+
 let getReadBooksData = () => {
     readBooks.getReadBooks().then(readData => {
-        console.log(readBooks);
         printReadBooksToDOM(readData);
-        console.log(readBooks);
     });
 };
 
 let deleteFromRead = (event) => {
-    console.log("eventtarget", event.target);
     readBooks.deleteFromRead(event.target.id).then(readData => {  
-     $(`#${event.target.id}`).closest('div').remove();
+     $(`#${event.target.id}`).closest('.bookDisplay').remove();
+     booksReadArray = booksReadArray.filter(i => i.key !== event.target.id);
+     $('#heading-display').replaceWith(`<div id="heading-display"><div><h2>Books I\'ve Read (${booksReadArray.length})</h2></div></div>`);
     });
 };
 
