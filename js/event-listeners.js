@@ -4,11 +4,6 @@ let wishlist = require('./wishlist');
 let $ = require('../lib/node_modules/jquery');
 let results = require('./results');
 
-// Spinner 
-$(window).ready(function() {
-    $('#loading').hide();
-});
-
 // Search button
 $('.search-btn').on('click', function(event) {
     event.preventDefault();
@@ -26,15 +21,14 @@ $(document).on('click', 'button.markread-btn', function(event){
 });
 
 // Delete from Wishlist
-$(document).on('click', 'button.delete-btn', function(event) {
+$(document).on('click', 'button.wish-delete-btn', function(event) {
     search.deleteFromWishlist(event);
     console.log("clicked");
 });
 
 // Delete from Read
-$(document).on('click', 'button.delete-btn', function(event) {
+$(document).on('click', 'button.read-delete-btn', function(event) {
     search.deleteFromRead(event);
-    console.log("clicked");
 });
 
 // ** Nav buttons ** //

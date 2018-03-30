@@ -110,9 +110,10 @@ img {
     min-height: 100%;
 }
 
-#loading {
-    position: absolute; 
-    background: url('./images/book.gif') no-repeat center center;
+.loading {
+    background: url('../../images/book.gif') no-repeat center center;
+    min-height: 200px;
+    min-width: 200px;
 }
 
 .book-img {
@@ -132,7 +133,7 @@ img {
     display: flex;
 }
 
-.delete-btn {
+.wish-delete-btn, .read-delete-btn {
     width: 125px;
 }
 
@@ -150,15 +151,3 @@ img {
     bottom:0;
     width:100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
