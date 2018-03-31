@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BookWorm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
-    <link rel="stylesheet" type="text/css" media="screen" href="dist/css/main.css" />  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="dist/css/main.css" />
 </head>
+
 <body>
     <header>
         <div id="top-header" class="container-fluid">
             <div id="logo-signin-header" class="row d-flex align-items-baseline pr-5 pl-5">
                 <div class="left-header-item col-sm-1">
-                    <img src="../images/book-logo-design-vector-15225895 copy.jpg">                   
+                    <img src="../images/book-logo-design-vector-15225895 copy.jpg">
                 </div>
                 <div class="left-header-item col-sm-4">
                     <h1 id="bookworm" class="align-self-baseline">ookworm</h1>
                 </div>
                 <div class="col-sm-7 text-right pb-4">
                     <h3 id="navbar-text" class="navbar-text">Hello, Amber Sharpe!</h3>
-                    <p>Logout</p>     
+                    <p>Logout</p>
                 </div>
             </div>
             <div class="header-nav row d-flex">
@@ -33,23 +36,48 @@
                         <button id="home-btn" type="button" class="btn btn-secondary btn-outline-success nav-btn">Home</button>
                         <button id="wishlist-btn" type="button" class="btn btn-secondary btn-outline-success nav-btn">Wishlist</button>
                         <button id="readbooks-btn" type="button" class="btn btn-secondary btn-outline-success nav-btn">Books I've Read</button>
-                    </div> 
+                    </div>
                 </nav>
             </div>
     </header>
-        <div id="heading-display">
+    <div id="heading-display">
 
-        </div>
-        <div id="loading-display"></div>
-        <div id="display"></div>
+    </div>
+    <div id="loading-display"></div>
+    <div id="display"></div>
     </div>
     <div class="footer">
-        <footer><h4>&copy; Copyright 2018 Amber Sharpe // Powered by Goodreads </h4></footer>
+        <footer>
+            <h4>&copy; Copyright 2018 Amber Sharpe // Powered by Goodreads </h4>
+        </footer>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="descModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-loading"></div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./dist/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -14,15 +14,13 @@ function getBooks(searchBooks) {
     });
 }
 
-function getBookDescriptions() {
+function getBookDescriptions(id) {
     return $.ajax({
-        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=15881`,
+        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${id}`,
         type: 'GET',
         dataType: 'xml'
     });
 }
-
-console.log(getBookDescriptions());
 
 // Get value from Search Input
 let searchInputValue = () => {
@@ -32,6 +30,7 @@ let searchInputValue = () => {
     parseAndPrintBooks(value);
     $('#search').val('');
 };
+
 function xmlToJson(xml) {
     // Create the return object
     var obj = {};
@@ -94,13 +93,13 @@ let printSearchResultsToDOM = (booksArray) => {
     for (var i = 0; i < booksArray.length; i++) {
         var bookDiv =
             `<div class="bookDisplay card">
-                <div>
+                <div class="book-info">
                     <img class="book-img card-img-top" src="${booksArray[i].image_url}">
                     <h3 class="title card-title">${booksArray[i].title}</h3>
                     <h4 class="author card-text">Author: ${booksArray[i].author}</h4>
                 </div>    
                 <div class="book-btn-display btn-group-vertical">
-                    <button id=${booksArray[i].id}-desc" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
+                    <button id="${booksArray[i].id}-desc" data-toggle="modal" data-target="#descModal" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                     <button id="${booksArray[i].id}" class="wishlist-btn btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
                     <button id="${booksArray[i].id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
                 </div>    
@@ -126,13 +125,13 @@ let printWishlistToDOM = (wishData) => {
     wishlistArray.forEach(function(d, i) {
         var bookDiv =
         `<div class="bookDisplay card wishlist-card">
-            <div>
+            <div class="book-info">
                 <img class="book-img card-img-top" src="${d.image_url}">
                 <h3 class="title card-title">${d.title}</h3>
                 <h4 class="author card-text">Author: ${d.author}</h4>
             </div>    
             <div class="book-btn-display btn-group-vertical">
-                <button id=${d.id}-desc" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
+                <button id=${d.id}-desc" data-toggle="modal" data-target="#descModal" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                 <button id="${d.key}" class="wish-delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
                 <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
@@ -141,6 +140,27 @@ let printWishlistToDOM = (wishData) => {
     document.querySelector('#display').innerHTML += bookDiv;
     });
     
+};
+
+let showDescription = (id) => {
+    id = id.split('-')[0];
+    getBookDescriptions(id).then(data => {
+        let desc = data.getElementsByTagName('description')[0];
+        let title = data.getElementsByTagName('title')[0];
+        let descHTML = cleanString(desc.innerHTML);
+        let titleHTML = cleanString(title.innerHTML);
+        populateModal(descHTML, titleHTML);
+        $("#modal-loading").removeClass("loading");
+    });
+};
+
+let populateModal = (desc, title) => {
+    $("#descModalLabel").text(title);
+    $(".modal-body p").text(desc);
+};
+
+let cleanString = (str) => {
+    return str.replace("<![CDATA[", '').replace(']]>', '').replace(/<br\s*\/?>/gi, '');
 };
 
 let checkWishListButton = (event) => {
@@ -181,14 +201,14 @@ let printReadBooksToDOM = (readData) => {
     booksReadArray.forEach(function(d, i) {
         var bookDiv =
             `<div class="bookDisplay card search-card">
-                <div>
+                <div class="book-info">
                     <img class="book-img card-img-top" src="${d.image_url}">
                     <h3 class="title card-title">${d.title}</h3>
                     <h4 class="author card-text">Author: ${d.author}</h4>
                 </div>    
                 <div class="book-btn-display btn-group-vertical">
                     <button id="${d.key}" class="read-delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
-                    <button id=${d.id}-desc" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
+                    <button id=${d.id}-desc" data-toggle="modal" data-target="#descModal" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                 </div>     
             </div>
         `;
@@ -237,6 +257,7 @@ module.exports = {
     checkWishListButton,
     getWishListData,
     checkBooksReadButton,
+    showDescription,
     getReadBooksData,
     deleteFromWishlist,
     deleteFromRead

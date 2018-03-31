@@ -2,7 +2,7 @@
 let search = require('./search-api');
 let wishlist = require('./wishlist');
 let $ = require('../lib/node_modules/jquery');
-let results = require('./results');
+
 
 // Search button
 $('.search-btn').on('click', function(event) {
@@ -33,7 +33,10 @@ $(document).on('click', 'button.read-delete-btn', function(event) {
 
 // See Description
 $(document).on('click', 'button.desc-btn', function(event) {
-    console.log(search.getBookDescriptions(event.target.id));
+    $("#descModalLabel").empty();
+    $(".modal-body p").empty();
+    $("#modal-loading").addClass("loading");
+    search.showDescription(event.target.id);
 });
 
 // ** Nav buttons ** //
