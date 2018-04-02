@@ -125,7 +125,7 @@ img {
 .book-img {
     width: 145px;
     height: 200px;
-    padding-bottom: 3px;
+    padding-bottom: 20px;
 }
 
 .card {
@@ -137,7 +137,6 @@ img {
     padding: 15px;
     margin: 15px;
     box-shadow: 0px 3px 15px rgba(0,0,0.2,0.2);
-    background-color: lighten(#EDF4F9, 85%);
 }
 
 .book-btn-display {
@@ -154,25 +153,19 @@ img {
     border-color: $secondaryGreen-color;
 }
 
-
-.desc-btn:hover {
-    background-color: $secondaryOrange-color;
-}
+.desc-btn {
+    background-color: #EFA8B8;
+}    
 
 .wish-delete-btn, .read-delete-btn {
+    background-color: $secondaryPink-color;
     width: 125px;
-}
-
-.wish-delete-btn:hover, .read-delete-btn:hover {
-    background-color: red;
+    border-bottom: none;
 }
 
 .markread-btn {
+    background-color: #FB9F89;
     width: 125px;
-}
-
-.markread-btn:hover {
-    background-color: $secondaryPink-color;
 }
 
 .wishlist-btn img {
@@ -180,10 +173,9 @@ img {
     height: 35px;
 }
 
-.wishlist-btn:hover {
-    background-color: $secondaryOrange-color;
+.wishlist-btn {
+    background-color: $secondaryPink-color;
 }
-
 
 .footer {
     position: relative;
