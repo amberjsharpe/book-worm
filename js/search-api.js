@@ -131,8 +131,8 @@ let printWishlistToDOM = (wishData) => {
                 <h4 class="author card-text">Author: ${d.author}</h4>
             </div>    
             <div class="book-btn-display btn-group-vertical">
-                <button id=${d.id}-desc" data-toggle="modal" data-target="#descModal" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                 <button id="${d.key}" class="wish-delete-btn btn search-btn btn-outline-success my-2 my-sm-0">Delete</button>
+                <button id=${d.id}-desc" data-toggle="modal" data-target="#descModal" class="desc-btn btn btn-outline-success my-2 my-sm-0">See Description</button>
                 <button id="${d.id}-read" class="markread-btn btn search-btn btn-outline-success my-2 my-sm-0">Mark as Read</button>
             </div>
         </div>
