@@ -4,11 +4,13 @@ let wishlist = require('./wishlist');
 let readBooks = require('./mark-read');
 let user = require('./user');
 let firebase = require("./fb-config");
+let cors = 'https://cors-anywhere.herokuapp.com';
+// let cors = 'https://crossorigin.me';
 
 // API calls
 function getBooks(searchBooks) {
     return $.ajax({
-        url: `https://crossorigin.me/https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q='${searchBooks}'`,
+        url: `${cors}/https://www.goodreads.com/search.xml?key=Fnqk8bj6Up42xHAAc3anFg&q='${searchBooks}'`,
         type: 'GET',
         dataType: 'xml'
     });
@@ -16,7 +18,7 @@ function getBooks(searchBooks) {
 
 function getBookDescriptions(id) {
     return $.ajax({
-        url: `https://crossorigin.me/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${id}`,
+        url: `${cors}/https://www.goodreads.com/book/show.xml?key=Fnqk8bj6Up42xHAAc3anFg&id=${id}`,
         type: 'GET',
         dataType: 'xml'
     });
